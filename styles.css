@@ -780,10 +780,16 @@ body {
 }
 
 .iphone-screen iframe {
-    width: 100%;
-    height: 100%;
+    /* Render at proper mobile viewport size, then scale down */
+    width: 375px;
+    height: 812px;
     border: none;
     background: #fff;
+    transform: scale(0.44);
+    transform-origin: top left;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .iphone-screen-content {
