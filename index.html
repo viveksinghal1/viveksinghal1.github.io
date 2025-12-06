@@ -369,37 +369,50 @@
         }
 
         .skill-bubble {
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
+            padding: 0.7rem 1.4rem;
+            border-radius: 25px;
             font-family: 'Patrick Hand', cursive;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             cursor: default;
             transition: all 0.3s ease;
             position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
         .skill-bubble.primary {
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            background: linear-gradient(135deg, #5a6e8a 0%, #4a5568 100%);
             color: white;
-            font-size: 1.3rem;
-            padding: 1rem 2rem;
+            font-size: 1.25rem;
+            padding: 0.8rem 1.6rem;
+            box-shadow: 0 3px 12px rgba(90, 110, 138, 0.25);
         }
 
         .skill-bubble.secondary {
-            background: white;
-            color: var(--ink-primary);
-            border: 2px dashed var(--gradient-1);
+            background: linear-gradient(135deg, #7c9a92 0%, #6b8a82 100%);
+            color: white;
+            box-shadow: 0 3px 12px rgba(124, 154, 146, 0.25);
         }
 
         .skill-bubble.tertiary {
-            background: linear-gradient(135deg, #fff9c4, #ffecb3);
-            color: var(--ink-primary);
-            border: 1px solid #ffc107;
+            background: linear-gradient(135deg, #a89076 0%, #947e66 100%);
+            color: white;
+            box-shadow: 0 3px 12px rgba(168, 144, 118, 0.25);
         }
 
         .skill-bubble:hover {
-            transform: scale(1.1) rotate(3deg);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            transform: translateY(-3px) rotate(-1deg);
+        }
+
+        .skill-bubble.primary:hover {
+            box-shadow: 0 6px 20px rgba(90, 110, 138, 0.35);
+        }
+
+        .skill-bubble.secondary:hover {
+            box-shadow: 0 6px 20px rgba(124, 154, 146, 0.35);
+        }
+
+        .skill-bubble.tertiary:hover {
+            box-shadow: 0 6px 20px rgba(168, 144, 118, 0.35);
         }
 
         /* Journey Timeline */
