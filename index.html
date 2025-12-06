@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivek Singhal | Frontend Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Kalam:wght@300;400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper-bg: #fdf8f3;
+            --paper-lines: #e8d5c4;
+            --ink-primary: #2c3e50;
+            --ink-accent: #c0392b;
+            --ink-highlight: #27ae60;
+            --ink-link: #2980b9;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --gradient-1: #667eea;
+            --gradient-2: #764ba2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Kalam', cursive;
+            background: var(--paper-bg);
+            color: var(--ink-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* ==================== TAB NAVIGATION ==================== */
+        .tab-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 0;
+            background: white;
+            border-radius: 30px;
+            padding: 5px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .tab-btn {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.1rem;
+            padding: 10px 25px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            color: var(--ink-primary);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            color: white;
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        /* ==================== TAB CONTENT ==================== */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* ==================== HOME TAB - IMMERSIVE PORTFOLIO ==================== */
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.3) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .greeting {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-name {
+            font-family: 'Permanent Marker', cursive;
+            font-size: clamp(3rem, 10vw, 7rem);
+            color: white;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-name::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: -10px;
+            right: -10px;
+            height: 20px;
+            background: linear-gradient(90deg, #ffeb3b, #ff9800);
+            z-index: -1;
+            transform: skew(-5deg) rotate(-1deg);
+            opacity: 0.8;
+        }
+
+        .hero-title {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: #a8dadc;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-tagline {
+            font-family: 'Kalam', cursive;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.5);
+            font-family: 'Patrick Hand', cursive;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-hint span {
+            display: block;
+            font-size: 2rem;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .float-item {
+            position: absolute;
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            opacity: 0.15;
+            color: white;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .float-item:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .float-item:nth-child(2) { top: 25%; right: 15%; animation-delay: 1s; }
+        .float-item:nth-child(3) { top: 60%; left: 8%; animation-delay: 2s; }
+        .float-item:nth-child(4) { top: 70%; right: 10%; animation-delay: 3s; }
+        .float-item:nth-child(5) { top: 40%; left: 20%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* About Section - Notebook Style */
+        .about-section {
+            padding: 6rem 2rem;
+            background: var(--paper-bg);
+            position: relative;
+        }
+
+        .section-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .handwritten-title {
+            font-family: 'Permanent Marker', cursive;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--ink-primary);
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .handwritten-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--ink-accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: drawLine 0.5s ease forwards;
+        }
+
+        .handwritten-title.in-view::after {
+            animation: drawLine 0.5s ease forwards;
+        }
+
+        @keyframes drawLine {
+            to { transform: scaleX(1); }
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow:
+                0 1px 3px rgba(0,0,0,0.08),
+                0 8px 30px rgba(0,0,0,0.1);
+            transform: rotate(-1deg);
+            position: relative;
+        }
+
+        .about-text-box::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 30px;
+            width: 60px;
+            height: 25px;
+            background: linear-gradient(135deg, #ffeb3b, #ffc107);
+            transform: rotate(-3deg);
+        }
+
+        .about-text {
+            font-size: 1.15rem;
+            line-height: 2;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px) rotate(2deg);
+        }
+
+        .stat-card:nth-child(even):hover {
+            transform: translateY(-5px) rotate(-2deg);
+        }
+
+        .stat-number {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2.5rem;
+            color: var(--gradient-1);
+        }
+
+        .stat-label {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #f8f9fa 0%, var(--paper-bg) 100%);
+        }
+
+        .skills-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-bubble {
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.1rem;
+            cursor: default;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .skill-bubble.primary {
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            color: white;
+            font-size: 1.3rem;
+            padding: 1rem 2rem;
+        }
+
+        .skill-bubble.secondary {
+            background: white;
+            color: var(--ink-primary);
+            border: 2px dashed var(--gradient-1);
+        }
+
+        .skill-bubble.tertiary {
+            background: linear-gradient(135deg, #fff9c4, #ffecb3);
+            color: var(--ink-primary);
+            border: 1px solid #ffc107;
+        }
+
+        .skill-bubble:hover {
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Journey Timeline */
+        .journey-section {
+            padding: 6rem 2rem;
+            background: var(--paper-bg);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gradient-1), var(--gradient-2));
+            border-radius: 4px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            width: calc(100% - 40px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 40px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 40px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 4px solid var(--gradient-1);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-year {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 1.2rem;
+            color: var(--gradient-1);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            color: var(--ink-primary);
+        }
+
+        .timeline-company {
+            font-family: 'Patrick Hand', cursive;
+            color: var(--ink-accent);
+        }
+
+        /* Project Section */
+        .projects-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .projects-section .handwritten-title {
+            color: white;
+        }
+
+        .project-showcase {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 3rem;
+        }
+
+        /* Individual Project Container */
+        .project-container {
+            min-height: 150vh; /* Extra height for scroll animation */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .project-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            position: sticky;
+            top: 0;
+            min-height: 100vh;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .project-container:nth-child(even) .project-wrapper {
+            /* Same layout for all */
+        }
+
+        .project-container:nth-child(even) .laptop-container {
+            order: unset;
+        }
+
+        .project-container:nth-child(even) .project-info {
+            order: unset;
+        }
+
+        /* 3D MacBook Styles - Full Screen to Laptop Animation */
+        .laptop-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            perspective: 1500px;
+            position: relative;
+            overflow: visible;
+        }
+
+        .macbook {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform-style: preserve-3d;
+            transform: scale(2.5) rotateY(0deg) rotateX(0deg);
+            transition: transform 0.05s ease-out;
+        }
+
+        /* MacBook Lid/Screen - fixed size, we use scale on parent */
+        .macbook-lid {
+            width: 400px;
+            height: 250px;
+            position: relative;
+        }
+
+        .macbook-screen-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #1a1a1a;
+            border-radius: 12px 12px 0 0;
+            padding: 10px 10px 0 10px;
+            box-sizing: border-box;
+            border: 2px solid #333;
+            overflow: hidden;
+        }
+
+        .macbook-display {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 4px 4px 0 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .macbook-display iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #fff;
+        }
+
+        .macbook-display-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .macbook-screen-back {
+            display: none;
+        }
+
+        /* MacBook Base */
+        .macbook-base {
+            width: 440px;
+            height: 14px;
+            background: linear-gradient(180deg, #e0e0e0 0%, #c0c0c0 50%, #a0a0a0 100%);
+            border-radius: 0 0 10px 10px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: scaleY(0);
+            transform-origin: top center;
+            transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+        }
+
+        /* Front notch */
+        .macbook-base::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 6px;
+            background: linear-gradient(180deg, #888, #666);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .macbook-base-top,
+        .macbook-base-front {
+            display: none;
+        }
+
+        .screen-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        .screen-overlay.hidden {
+            display: none;
+        }
+
+        /* Shadow under MacBook */
+        .macbook-shadow {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 350px;
+            height: 20px;
+            background: radial-gradient(ellipse, rgba(0,0,0,0.4) 0%, transparent 70%);
+            filter: blur(12px);
+            opacity: 0;
+            transition: opacity 0.15s ease-out;
+        }
+
+        /* Progress text - hide it */
+        .lid-progress {
+            display: none;
+        }
+
+        /* Project Info */
+        .project-info {
+            color: white;
+            text-align: center;
+            max-width: 600px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .project-info.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-info h3 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .project-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
+            z-index: -1;
+            opacity: 0.5;
+            transform: skew(-5deg);
+        }
+
+        .project-info p {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+        }
+
+        .project-tech span {
+            background: rgba(102, 126, 234, 0.3);
+            color: #a8dadc;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-family: 'Patrick Hand', cursive;
+            border: 1px solid rgba(102, 126, 234, 0.5);
+        }
+
+        .project-links-home {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .project-links-home a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.1rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .project-links-home a:hover {
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        .project-links-home a.primary-link {
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            border: none;
+        }
+
+        .project-links-home a.primary-link:hover {
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Responsive Projects */
+        @media (max-width: 1000px) {
+            .project-wrapper,
+            .project-container:nth-child(even) .project-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 1rem;
+            }
+
+            .project-container:nth-child(even) .laptop-container,
+            .project-container:nth-child(even) .project-info {
+                order: unset;
+            }
+
+            .laptop-container {
+                height: 400px;
+            }
+
+            .macbook-lid {
+                width: 320px;
+                height: 200px;
+            }
+
+            .macbook-base {
+                width: 350px;
+            }
+
+            .project-info {
+                text-align: center;
+            }
+
+            .project-info h3 {
+                font-size: 2rem;
+            }
+
+            .project-links-home {
+                justify-content: center;
+            }
+
+            .project-container {
+                min-height: auto;
+                padding: 3rem 0;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .laptop-container {
+                height: 350px;
+            }
+
+            .macbook-lid {
+                width: 260px;
+                height: 165px;
+            }
+
+            .macbook-screen-front {
+                padding: 6px;
+                border-radius: 8px 8px 0 0;
+            }
+
+            .macbook-base {
+                width: 280px;
+                height: 12px;
+            }
+
+            .project-info h3 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 2rem;
+            background: var(--paper-bg);
+            text-align: center;
+        }
+
+        .contact-cta {
+            font-family: 'Caveat', cursive;
+            font-size: 1.8rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: white;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--ink-primary);
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            color: var(--gradient-1);
+        }
+
+        /* ==================== RESUME TAB ==================== */
+        .resume-tab {
+            padding: 4rem 2rem;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            perspective: 1000px;
+        }
+
+        .notebook {
+            max-width: 900px;
+            margin: 0 auto;
+            /* Old parchment paper colors */
+            background:
+                /* Coffee stain */
+                radial-gradient(ellipse at 85% 15%, rgba(139, 90, 43, 0.15) 0%, transparent 40%),
+                /* Age spots */
+                radial-gradient(ellipse at 20% 80%, rgba(160, 120, 60, 0.1) 0%, transparent 30%),
+                radial-gradient(ellipse at 70% 60%, rgba(140, 100, 50, 0.08) 0%, transparent 25%),
+                /* Base parchment gradient */
+                linear-gradient(180deg,
+                    #f4e4bc 0%,
+                    #ecd9a9 15%,
+                    #e8d4a2 30%,
+                    #f0ddb0 50%,
+                    #e5cea0 70%,
+                    #dfc590 85%,
+                    #d4b87a 100%
+                );
+            border-radius: 4px;
+            box-shadow:
+                8px 12px 25px rgba(0,0,0,0.3),
+                3px 5px 10px rgba(0,0,0,0.2),
+                inset 0 0 60px rgba(139, 90, 43, 0.1);
+            position: relative;
+            overflow: visible;
+        }
+
+        /* Crack lines overlay */
+        .notebook::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                /* Diagonal crack from top right */
+                linear-gradient(135deg, transparent 45%, rgba(101, 67, 33, 0.15) 45.5%, rgba(101, 67, 33, 0.08) 46%, transparent 46.5%),
+                linear-gradient(140deg, transparent 60%, rgba(101, 67, 33, 0.12) 60.3%, rgba(101, 67, 33, 0.06) 60.6%, transparent 61%),
+                /* Crack from bottom left */
+                linear-gradient(320deg, transparent 70%, rgba(101, 67, 33, 0.1) 70.2%, rgba(101, 67, 33, 0.05) 70.5%, transparent 71%),
+                /* Small cracks */
+                linear-gradient(95deg, transparent 20%, rgba(101, 67, 33, 0.08) 20.1%, transparent 20.3%),
+                linear-gradient(85deg, transparent 75%, rgba(101, 67, 33, 0.1) 75.1%, transparent 75.4%),
+                /* Horizontal crease */
+                linear-gradient(180deg, transparent 30%, rgba(101, 67, 33, 0.06) 30.1%, rgba(101, 67, 33, 0.03) 30.2%, transparent 30.4%);
+            pointer-events: none;
+            z-index: 10;
+            border-radius: 4px;
+        }
+
+        /* Torn/chipped edges */
+        .notebook::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* Rough edge effect using clip-path */
+            clip-path: polygon(
+                /* Top edge - slightly rough */
+                0% 0.5%, 3% 0%, 7% 0.3%, 12% 0%, 18% 0.2%, 25% 0%, 32% 0.4%, 40% 0%, 48% 0.2%, 55% 0%, 63% 0.3%, 70% 0%, 78% 0.2%, 85% 0%, 92% 0.3%, 97% 0%, 100% 0.5%,
+                /* Right edge */
+                99.5% 5%, 100% 12%, 99.7% 20%, 100% 28%, 99.5% 35%, 100% 45%, 99.6% 55%, 100% 65%, 99.5% 75%, 100% 85%, 99.7% 92%, 100% 100%,
+                /* Bottom edge - more torn */
+                97% 100%, 94% 99.5%, 90% 100%, 85% 99.3%, 80% 100%, 73% 99.6%, 67% 100%, 60% 99.4%, 52% 100%, 45% 99.5%, 38% 100%, 30% 99.6%, 22% 100%, 15% 99.3%, 8% 100%, 3% 99.5%, 0% 100%,
+                /* Left edge */
+                0.3% 93%, 0% 85%, 0.5% 77%, 0% 68%, 0.3% 60%, 0% 50%, 0.4% 42%, 0% 33%, 0.3% 25%, 0% 17%, 0.5% 8%, 0% 0.5%
+            );
+            box-shadow:
+                inset 2px 2px 8px rgba(101, 67, 33, 0.2),
+                inset -2px -2px 8px rgba(101, 67, 33, 0.2);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* Chipped corner - top right */
+        .paper-chip-tr {
+            position: absolute;
+            top: -2px;
+            right: 15px;
+            width: 25px;
+            height: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            clip-path: polygon(100% 0%, 0% 0%, 100% 100%);
+            z-index: 15;
+        }
+
+        /* Chipped corner - bottom left */
+        .paper-chip-bl {
+            position: absolute;
+            bottom: -2px;
+            left: 30px;
+            width: 20px;
+            height: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            clip-path: polygon(0% 100%, 0% 0%, 100% 100%);
+            z-index: 15;
+        }
+
+        /* Additional crack texture */
+        .crack-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                /* Spiderweb cracks near edges */
+                radial-gradient(ellipse at 5% 15%, rgba(101, 67, 33, 0.08) 0%, transparent 8%),
+                radial-gradient(ellipse at 95% 85%, rgba(101, 67, 33, 0.06) 0%, transparent 10%),
+                radial-gradient(ellipse at 90% 10%, rgba(101, 67, 33, 0.07) 0%, transparent 6%);
+            pointer-events: none;
+            z-index: 11;
+        }
+
+
+        /* Torn/rough edges effect */
+        .page {
+            position: relative;
+            padding: 3rem 3rem 3rem 5rem;
+            background-image: repeating-linear-gradient(
+                transparent,
+                transparent 31px,
+                rgba(139, 90, 43, 0.15) 31px,
+                rgba(139, 90, 43, 0.15) 32px
+            );
+            background-position: 0 1.5rem;
+        }
+
+        /* Burnt/aged edges */
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            box-shadow:
+                inset 8px 0 15px -8px rgba(101, 67, 33, 0.4),
+                inset -8px 0 15px -8px rgba(101, 67, 33, 0.4),
+                inset 0 8px 15px -8px rgba(101, 67, 33, 0.3),
+                inset 0 -8px 15px -8px rgba(101, 67, 33, 0.5);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Red margin line - faded for old look */
+        .page::after {
+            content: '';
+            position: absolute;
+            left: 60px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(180, 100, 100, 0.3);
+            z-index: 2;
+        }
+
+        .header {
+            text-align: center;
+            padding-bottom: 2rem;
+            border-bottom: 2px dashed rgba(139, 90, 43, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .name {
+            font-family: 'Caveat', cursive;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #3d2914;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .name::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, rgba(139, 90, 43, 0.2), rgba(160, 100, 50, 0.15));
+            z-index: -1;
+            transform: skew(-5deg);
+        }
+
+        .title {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.4rem;
+            color: #8b4513;
+            margin-bottom: 1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .contact-links a {
+            color: #5d4e37;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            color: #8b4513;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            color: #6b4423;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-text-resume {
+            font-size: 1.1rem;
+            padding: 1rem;
+            background: rgba(139, 90, 43, 0.08);
+            border-left: 4px solid rgba(139, 90, 43, 0.4);
+            border-radius: 0 8px 8px 0;
+            color: #4a3728;
+        }
+
+        .experience-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid rgba(107, 68, 35, 0.5);
+        }
+
+        .company-name {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            color: #3d2914;
+            font-weight: 600;
+        }
+
+        .role {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.15rem;
+            color: #8b4513;
+        }
+
+        .duration {
+            font-size: 0.9rem;
+            color: #7a6a5a;
+            font-style: italic;
+        }
+
+        .experience-details {
+            margin-top: 0.5rem;
+            padding-left: 1rem;
+            color: #4a3728;
+        }
+
+        .experience-details li {
+            margin-bottom: 0.3rem;
+        }
+
+        .experience-details li::marker {
+            content: '~ ';
+            color: #8b4513;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category h4 {
+            font-family: 'Caveat', cursive;
+            font-size: 1.3rem;
+            color: #6b4423;
+            margin-bottom: 0.5rem;
+            text-decoration: underline;
+            text-decoration-style: wavy;
+            text-decoration-color: rgba(139, 90, 43, 0.4);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(139, 90, 43, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            border: 1px dashed rgba(139, 90, 43, 0.4);
+            color: #4a3728;
+        }
+
+        .project-card {
+            background: rgba(139, 90, 43, 0.06);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid rgba(139, 90, 43, 0.2);
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            color: #3d2914;
+        }
+
+        .project-links a {
+            color: #6b4423;
+            text-decoration: none;
+            margin-right: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .project-links a:hover {
+            color: #8b4513;
+        }
+
+        .education-card {
+            background: rgba(139, 90, 43, 0.06);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid rgba(139, 90, 43, 0.2);
+        }
+
+        .school-name {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            color: #3d2914;
+        }
+
+        .education-card .role {
+            color: #6b4423;
+        }
+
+        .education-card .duration {
+            color: #7a6a5a;
+        }
+
+        .cert-list {
+            list-style: none;
+        }
+
+        .cert-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dotted rgba(139, 90, 43, 0.3);
+            color: #4a3728;
+        }
+
+        .cert-list li::before {
+            content: '* ';
+            color: #8b4513;
+            font-weight: bold;
+        }
+
+        .cert-list a {
+            color: #6b4423;
+            text-decoration: none;
+        }
+
+        .cert-list a:hover {
+            color: #8b4513;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tab-nav {
+                top: auto;
+                bottom: 20px;
+                right: 50%;
+                transform: translateX(50%);
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 60px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+
+            .timeline-item .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .page {
+                padding: 2rem 1.5rem 2rem 2.5rem;
+            }
+
+            .notebook::before {
+                left: 20px;
+            }
+
+            .hero-name {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Tab Navigation -->
+    <nav class="tab-nav">
+        <button class="tab-btn active" data-tab="home">Home</button>
+        <button class="tab-btn" data-tab="resume">Resume</button>
+    </nav>
+
+    <!-- ==================== HOME TAB ==================== -->
+    <div id="home" class="tab-content active">
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="floating-elements">
+                <span class="float-item">&lt;div&gt;</span>
+                <span class="float-item">{ code }</span>
+                <span class="float-item">React</span>
+                <span class="float-item">const</span>
+                <span class="float-item">=&gt;</span>
+            </div>
+            <div class="hero-content">
+                <p class="greeting">Hey there, I'm</p>
+                <h1 class="hero-name">Vivek Singhal</h1>
+                <p class="hero-title">Frontend Engineer who loves crafting experiences</p>
+                <p class="hero-tagline">5+ years of turning coffee into code, designs into reality, and bugs into features (sometimes intentionally)</p>
+            </div>
+            <div class="scroll-hint">
+                scroll down
+                <span>v</span>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="section-container">
+                <h2 class="handwritten-title reveal">A little about me...</h2>
+                <div class="about-content">
+                    <div class="about-text-box reveal">
+                        <p class="about-text">
+                            I'm a frontend engineer based in <strong>Delhi, India</strong>, passionate about building
+                            beautiful, performant, and accessible web applications. I specialize in
+                            <strong>React</strong> ecosystem and love working with modern JavaScript.
+                            <br><br>
+                            When I'm not coding, you'll find me exploring new technologies,
+                            contributing to open source, or solving puzzles.
+                        </p>
+                    </div>
+                    <div class="stats-grid reveal">
+                        <div class="stat-card">
+                            <div class="stat-number">5+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Enterprise Clients</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">25%</div>
+                            <div class="stat-label">Load Time Reduced</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Companies</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills-section">
+            <div class="section-container">
+                <h2 class="handwritten-title reveal">Things I'm good at...</h2>
+                <div class="skills-cloud reveal">
+                    <span class="skill-bubble primary">React</span>
+                    <span class="skill-bubble primary">TypeScript</span>
+                    <span class="skill-bubble secondary">Redux</span>
+                    <span class="skill-bubble tertiary">JavaScript</span>
+                    <span class="skill-bubble secondary">Context API</span>
+                    <span class="skill-bubble tertiary">Cypress</span>
+                    <span class="skill-bubble primary">AWS</span>
+                    <span class="skill-bubble tertiary">Jest</span>
+                    <span class="skill-bubble secondary">Angular</span>
+                    <span class="skill-bubble tertiary">Chart.js</span>
+                    <span class="skill-bubble secondary">Material UI</span>
+                    <span class="skill-bubble tertiary">Git</span>
+                    <span class="skill-bubble primary">GCP</span>
+                    <span class="skill-bubble tertiary">Webpack</span>
+                    <span class="skill-bubble secondary">REST APIs</span>
+                    <span class="skill-bubble tertiary">HTML/CSS</span>
+                    <span class="skill-bubble secondary">RTL</span>
+                    <span class="skill-bubble tertiary">Python</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Journey Timeline -->
+        <section class="journey-section">
+            <div class="section-container">
+                <h2 class="handwritten-title reveal">My journey so far...</h2>
+                <div class="timeline">
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2024 - Present</div>
+                            <div class="timeline-title">Software Engineer 2</div>
+                            <div class="timeline-company">Workspan (Remote)</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2023 - 2024</div>
+                            <div class="timeline-title">Software Engineer</div>
+                            <div class="timeline-company">Workspan (Remote)</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2022</div>
+                            <div class="timeline-title">Software Engineer L1</div>
+                            <div class="timeline-company">Gemini Solutions</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2020 - 2022</div>
+                            <div class="timeline-title">Software Developer</div>
+                            <div class="timeline-company">Algoscale Technologies</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2017 - 2021</div>
+                            <div class="timeline-title">B.Tech in CSE</div>
+                            <div class="timeline-company">GLA University (8.54 CGPA)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects-section">
+            <div class="section-container" style="max-width: 1200px;">
+                <h2 class="handwritten-title reveal">Stuff I've built...</h2>
+                <div class="project-showcase">
+
+                    <!-- Project 1: GitHub Finder -->
+                    <div class="project-container" data-project="1">
+                        <div class="project-wrapper">
+                            <div class="laptop-container">
+                                <div class="macbook">
+                                    <div class="macbook-lid">
+                                        <div class="macbook-screen-front">
+                                            <div class="macbook-display">
+                                                <iframe
+                                                    src="https://github-finder-app-jet.vercel.app/"
+                                                    title="GitHub Finder App"
+                                                    loading="lazy"
+                                                ></iframe>
+                                                <div class="screen-overlay" onclick="this.classList.add('hidden')"></div>
+                                            </div>
+                                        </div>
+                                        <div class="macbook-screen-back"></div>
+                                    </div>
+                                    <div class="macbook-base">
+                                        <div class="macbook-base-top"></div>
+                                        <div class="macbook-base-front"></div>
+                                    </div>
+                                    <div class="macbook-shadow"></div>
+                                </div>
+                                <div class="lid-progress"></div>
+                            </div>
+                            <div class="project-info">
+                                <h3>GitHub Finder</h3>
+                                <p>A sleek interface to search and explore GitHub profiles. View detailed repo information including watchers, forks, open issues, and stars with beautiful visualizations.</p>
+                                <div class="project-tech">
+                                    <span>React</span>
+                                    <span>Node.js</span>
+                                    <span>GitHub API</span>
+                                    <span>Vercel</span>
+                                </div>
+                                <div class="project-links-home">
+                                    <a href="https://github-finder-app-jet.vercel.app/" target="_blank" class="primary-link">Live Demo</a>
+                                    <a href="https://github.com/viveksinghal1/github-finder-app/" target="_blank">Source Code</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Workspan Marketplace -->
+                    <div class="project-container" data-project="2">
+                        <div class="project-wrapper">
+                            <div class="laptop-container">
+                                <div class="macbook">
+                                    <div class="macbook-lid">
+                                        <div class="macbook-screen-front">
+                                            <div class="macbook-display">
+                                                <div class="macbook-display-content" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                                    <div style="font-family: 'Permanent Marker', cursive; font-size: 1.8rem; margin-bottom: 0.8rem;">Workspan</div>
+                                                    <div style="font-family: 'Kalam', cursive; font-size: 0.9rem; opacity: 0.8;">Enterprise SaaS Platform</div>
+                                                    <div style="margin-top: 1rem; padding: 0.4rem 1rem; border: 2px dashed rgba(255,255,255,0.5); border-radius: 15px; font-family: 'Patrick Hand', cursive; font-size: 0.85rem;">100+ Enterprise Customers</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="macbook-screen-back"></div>
+                                    </div>
+                                    <div class="macbook-base">
+                                        <div class="macbook-base-top"></div>
+                                        <div class="macbook-base-front"></div>
+                                    </div>
+                                    <div class="macbook-shadow"></div>
+                                </div>
+                                <div class="lid-progress"></div>
+                            </div>
+                            <div class="project-info">
+                                <h3>Workspan Marketplace</h3>
+                                <p>Led frontend development for a hyperscaler marketplace platform serving 100+ enterprise customers. Built scalable React architecture with integrations across AWS, Azure, and GCP cloud platforms.</p>
+                                <div class="project-tech">
+                                    <span>React</span>
+                                    <span>Redux</span>
+                                    <span>Cypress</span>
+                                    <span>AWS</span>
+                                    <span>TypeScript</span>
+                                </div>
+                                <div class="project-links-home">
+                                    <a href="https://www.workspan.com/" target="_blank" class="primary-link">Visit Workspan</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="section-container">
+                <h2 class="handwritten-title reveal">Let's connect!</h2>
+                <p class="contact-cta reveal">I'm always open to discussing new projects, creative ideas, or opportunities.</p>
+                <div class="social-links reveal">
+                    <a href="mailto:viveksinghal0003@gmail.com" class="social-link">@ Email</a>
+                    <a href="https://www.linkedin.com/in/vivek-singhal-a22589158/" target="_blank" class="social-link">in LinkedIn</a>
+                    <a href="https://github.com/viveksinghal1" target="_blank" class="social-link">&lt;/&gt; GitHub</a>
+                    <a href="tel:+917302477139" class="social-link"># Phone</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================== RESUME TAB ==================== -->
+    <div id="resume" class="tab-content">
+        <div class="resume-tab">
+            <div class="notebook">
+                <div class="paper-chip-tr"></div>
+                <div class="paper-chip-bl"></div>
+                <div class="crack-overlay"></div>
+                <div class="page">
+                    <header class="header">
+                        <h1 class="name">Vivek Singhal</h1>
+                        <p class="title">Frontend Engineer | Delhi, India</p>
+                        <div class="contact-links">
+                            <a href="mailto:viveksinghal0003@gmail.com">@ viveksinghal0003@gmail.com</a>
+                            <a href="https://www.linkedin.com/in/vivek-singhal-a22589158/" target="_blank">in LinkedIn</a>
+                            <a href="https://github.com/viveksinghal1" target="_blank">&lt;/&gt; GitHub</a>
+                            <a href="tel:+917302477139"># +91 7302477139</a>
+                        </div>
+                    </header>
+
+                    <section class="section">
+                        <h2 class="section-title">Summary</h2>
+                        <p class="about-text-resume">
+                            Frontend Engineer with <strong>5+ years</strong> of experience in <strong>React, Redux, and Context API</strong>.
+                            Proven track record in performance optimization (code-splitting, CDN), and enterprise integrations across
+                            <strong>AWS, Azure, and GCP</strong>. Strong focus on testing (Cypress, Jest, RTL) and delivering
+                            personalized, responsive UIs.
+                        </p>
+                    </section>
+
+                    <section class="section">
+                        <h2 class="section-title">Experience</h2>
+
+                        <div class="experience-item">
+                            <h3 class="company-name">Workspan</h3>
+                            <p class="role">Software Engineer 2</p>
+                            <p class="duration">March 2024 - Present | Bangalore, India (Remote)</p>
+                            <ul class="experience-details">
+                                <li>Led development of scalable React-based front-end architecture supporting multi-seller operations, boosting flexibility by 50%</li>
+                                <li>Implemented Redux and Context API state management with performance optimizations, reducing load time by 25%</li>
+                                <li>Enhanced product stability through end-to-end testing with Cypress</li>
+                                <li>Improved accessibility (WCAG 2.1), driving 30% higher adoption rate</li>
+                                <li>Optimized static asset delivery via CDN caching, reducing FCP by 20%</li>
+                            </ul>
+                        </div>
+
+                        <div class="experience-item">
+                            <h3 class="company-name">Workspan</h3>
+                            <p class="role">Software Engineer</p>
+                            <p class="duration">Jan 2023 - March 2024 | Bangalore, India (Remote)</p>
+                            <ul class="experience-details">
+                                <li>Spearheaded development of Workspan Marketplace Hyperscaler frontend, attracting 100+ enterprise customers</li>
+                                <li>Designed configurable UI architecture boosting satisfaction by 75%</li>
+                                <li>Built comprehensive UI test coverage reducing production bugs by 20%</li>
+                                <li>Integrated AWS Marketplace Developer APIs with React-based UI</li>
+                            </ul>
+                        </div>
+
+                        <div class="experience-item">
+                            <h3 class="company-name">Gemini Solutions</h3>
+                            <p class="role">Software Engineer L1</p>
+                            <p class="duration">Apr 2022 - Dec 2022 | Gurugram, India</p>
+                            <ul class="experience-details">
+                                <li>Developed React-based admin dashboards on top of REST APIs</li>
+                                <li>Migrated legacy UI from jQuery to React, improving developer onboarding</li>
+                            </ul>
+                        </div>
+
+                        <div class="experience-item">
+                            <h3 class="company-name">Algoscale Technologies</h3>
+                            <p class="role">Software Developer</p>
+                            <p class="duration">May 2020 - March 2022 | Noida, India</p>
+                            <ul class="experience-details">
+                                <li>Built PWA with offline caching, adaptive SEO, and SSR, improving load times by 20%</li>
+                                <li>Designed responsive UIs and data visualization dashboards with Chart.js</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <h2 class="section-title">Skills</h2>
+                        <div class="skills-container">
+                            <div class="skill-category">
+                                <h4>Languages</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">TypeScript</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">CSS</span>
+                                    <span class="skill-tag">HTML</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Frameworks</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">React</span>
+                                    <span class="skill-tag">Redux</span>
+                                    <span class="skill-tag">Angular</span>
+                                    <span class="skill-tag">Cypress</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Tools</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Git</span>
+                                    <span class="skill-tag">Webpack</span>
+                                    <span class="skill-tag">Jest</span>
+                                    <span class="skill-tag">JIRA</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Cloud</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">AWS</span>
+                                    <span class="skill-tag">GCP</span>
+                                    <span class="skill-tag">Azure</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <h2 class="section-title">Projects</h2>
+                        <div class="project-card">
+                            <h3 class="project-title">GitHub Finder App</h3>
+                            <div class="project-links">
+                                <a href="https://github-finder-app-jet.vercel.app/user/viveksinghal1" target="_blank">Live Demo</a>
+                                <a href="https://github.com/viveksinghal1/github-finder-app/" target="_blank">GitHub</a>
+                            </div>
+                            <p>Search and view GitHub profiles with repo details including watchers, forks, issues, and stars.</p>
+                            <div class="skill-tags" style="margin-top: 0.8rem;">
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">GitHub APIs</span>
+                                <span class="skill-tag">Vercel</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <h2 class="section-title">Education</h2>
+                        <div class="education-card">
+                            <h3 class="school-name">GLA University</h3>
+                            <p class="role">Bachelor's in Technology (CSE)</p>
+                            <p class="duration">2017 - 2021 | Mathura, India</p>
+                            <p><strong>CGPA: 8.54 / 10.0 (Honors)</strong></p>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <h2 class="section-title">Certifications</h2>
+                        <ul class="cert-list">
+                            <li><a href="https://www.udemy.com/certificate/UC-c3522507-a402-4a2f-98cd-bae149ce9f3a/" target="_blank">React Front To Back - Udemy</a></li>
+                            <li><a href="https://www.freecodecamp.org/certification/fcc6d9baf52-3e01-4e0e-bc12-4a83c6931911/javascript-algorithms-and-data-structures" target="_blank">JavaScript DSA - FreeCodeCamp</a></li>
+                            <li><a href="https://drive.google.com/drive/u/0/folders/1FFyo7dN2zVIOHK0fVCdUrDViOnAWUAl0" target="_blank">Other Certifications</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.dataset.tab;
+
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+
+                btn.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Scroll reveal animations
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // MacBook lid scroll animation - Apple style opening
+        function initLaptopAnimation() {
+            const projectContainers = document.querySelectorAll('.project-container');
+
+            if (projectContainers.length === 0) return;
+
+            function updateLaptops() {
+                projectContainers.forEach((container) => {
+                    const macbook = container.querySelector('.macbook');
+                    const macbookBase = container.querySelector('.macbook-base');
+                    const shadow = container.querySelector('.macbook-shadow');
+                    const projectInfo = container.querySelector('.project-info');
+
+                    if (!macbook) return;
+
+                    const rect = container.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+
+                    // Progress based on scroll - start when top has 15% gap from viewport top
+                    const triggerPoint = windowHeight * 0.15; // 15% from top
+                    const scrollRange = rect.height - windowHeight;
+                    let progress = 0;
+
+                    if (rect.top > triggerPoint) {
+                        // Screen top hasn't reached 15% from viewport top yet
+                        progress = 0;
+                    } else if (rect.top < -scrollRange) {
+                        progress = 1;
+                    } else {
+                        // Start progress when rect.top <= triggerPoint
+                        progress = (triggerPoint - rect.top) / (triggerPoint + scrollRange);
+                    }
+
+                    progress = Math.max(0, Math.min(1, progress));
+
+                    // Smooth easing
+                    const easeOut = t => 1 - Math.pow(1 - t, 3);
+
+                    // Animation phases:
+                    // Phase 1 (0-20%): Full screen zoomed in (shorter now since we start later)
+                    // Phase 2 (20-70%): Zoom out to laptop size + show base
+                    // Phase 3 (70-100%): Wobble + show info
+
+                    if (progress <= 0.2) {
+                        // Phase 1: Zoomed in - showing big screen
+                        const scale = 2.5;
+                        macbook.style.transform = `scale(${scale}) rotateY(0deg) rotateX(0deg)`;
+                        macbookBase.style.opacity = '0';
+                        macbookBase.style.transform = 'scaleY(0)';
+                        if (shadow) shadow.style.opacity = '0';
+                        if (projectInfo) projectInfo.classList.remove('visible');
+
+                    } else if (progress <= 0.7) {
+                        // Phase 2: Zoom out smoothly
+                        const zoomProgress = (progress - 0.2) / 0.5; // 0.2 to 0.7 = 0.5 range
+                        const eased = easeOut(zoomProgress);
+
+                        // Scale from 2.5 to 1
+                        const scale = 2.5 - (eased * 1.5);
+                        macbook.style.transform = `scale(${scale}) rotateY(0deg) rotateX(${eased * 5}deg)`;
+
+                        // Show base after halfway through zoom
+                        const baseProgress = Math.max(0, (zoomProgress - 0.5) * 2);
+                        macbookBase.style.opacity = baseProgress.toString();
+                        macbookBase.style.transform = `scaleY(${baseProgress})`;
+
+                        if (shadow) shadow.style.opacity = (eased * 0.5).toString();
+                        if (projectInfo) projectInfo.classList.remove('visible');
+
+                    } else {
+                        // Phase 3: Big noticeable wobble + show info
+                        const tiltProgress = (progress - 0.7) / 0.3; // 0.7 to 1.0 = 0.3 range
+
+                        // Strong wobble: ±45° rotation, multiple swings
+                        const wobbleY = Math.sin(tiltProgress * Math.PI * 6) * 45 * (1 - tiltProgress * 0.7);
+                        const wobbleX = Math.cos(tiltProgress * Math.PI * 4) * 20 * (1 - tiltProgress * 0.7);
+                        const wobbleZ = Math.sin(tiltProgress * Math.PI * 3) * 10 * (1 - tiltProgress);
+
+                        macbook.style.transform = `scale(1) rotateY(${wobbleY}deg) rotateX(${10 + wobbleX}deg) rotateZ(${wobbleZ}deg)`;
+
+                        macbookBase.style.opacity = '1';
+                        macbookBase.style.transform = 'scaleY(1)';
+                        if (shadow) shadow.style.opacity = '0.5';
+                        if (projectInfo) projectInfo.classList.add('visible');
+                    }
+                });
+            }
+
+            // Scroll handler with requestAnimationFrame
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        updateLaptops();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            window.addEventListener('resize', updateLaptops, { passive: true });
+
+            // Initial run
+            updateLaptops();
+            setTimeout(updateLaptops, 100);
+        }
+
+        // Initialize
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initLaptopAnimation);
+        } else {
+            initLaptopAnimation();
+        }
+    </script>
+</body>
+</html>
