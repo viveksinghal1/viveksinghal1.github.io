@@ -1046,6 +1046,35 @@
             margin-bottom: 2rem;
         }
 
+        .download-resume-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            padding: 1rem 1.8rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            box-shadow:
+                0 4px 20px rgba(102, 126, 234, 0.4),
+                0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .download-resume-btn:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 6px 25px rgba(102, 126, 234, 0.5),
+                0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .download-resume-btn::before {
+            content: '↓ ';
+        }
+
         .name {
             font-family: 'Caveat', cursive;
             font-size: 3.5rem;
@@ -1326,6 +1355,9 @@
         <button class="tab-btn active" data-tab="home">Home</button>
         <button class="tab-btn" data-tab="resume">Resume</button>
     </nav>
+
+    <!-- Download Resume Button - Fixed/Sticky -->
+    <a href="https://drive.google.com/file/d/1o6B0dYdW4oISv6EQCaVsKZ7CK23ani_K/view?usp=drive_link" target="_blank" class="download-resume-btn">Download Resume</a>
 
     <!-- ==================== HOME TAB ==================== -->
     <div id="home" class="tab-content active">
