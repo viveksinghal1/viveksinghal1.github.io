@@ -379,6 +379,26 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
+        /* Scattered rotations */
+        .skill-bubble:nth-child(1) { transform: rotate(-3deg); }
+        .skill-bubble:nth-child(2) { transform: rotate(2deg); }
+        .skill-bubble:nth-child(3) { transform: rotate(-1deg); }
+        .skill-bubble:nth-child(4) { transform: rotate(3deg); }
+        .skill-bubble:nth-child(5) { transform: rotate(-2deg); }
+        .skill-bubble:nth-child(6) { transform: rotate(1deg); }
+        .skill-bubble:nth-child(7) { transform: rotate(-4deg); }
+        .skill-bubble:nth-child(8) { transform: rotate(2deg); }
+        .skill-bubble:nth-child(9) { transform: rotate(-1deg); }
+        .skill-bubble:nth-child(10) { transform: rotate(3deg); }
+        .skill-bubble:nth-child(11) { transform: rotate(-2deg); }
+        .skill-bubble:nth-child(12) { transform: rotate(4deg); }
+        .skill-bubble:nth-child(13) { transform: rotate(-3deg); }
+        .skill-bubble:nth-child(14) { transform: rotate(1deg); }
+        .skill-bubble:nth-child(15) { transform: rotate(-2deg); }
+        .skill-bubble:nth-child(16) { transform: rotate(3deg); }
+        .skill-bubble:nth-child(17) { transform: rotate(-1deg); }
+        .skill-bubble:nth-child(18) { transform: rotate(2deg); }
+
         .skill-bubble.primary {
             background: linear-gradient(135deg, #5a6e8a 0%, #4a5568 100%);
             color: white;
@@ -400,19 +420,20 @@
         }
 
         .skill-bubble:hover {
-            transform: translateY(-3px) rotate(-1deg);
+            transform: translateY(-5px) rotate(0deg) scale(1.05);
+            z-index: 10;
         }
 
         .skill-bubble.primary:hover {
-            box-shadow: 0 6px 20px rgba(90, 110, 138, 0.35);
+            box-shadow: 0 8px 25px rgba(90, 110, 138, 0.4);
         }
 
         .skill-bubble.secondary:hover {
-            box-shadow: 0 6px 20px rgba(124, 154, 146, 0.35);
+            box-shadow: 0 8px 25px rgba(124, 154, 146, 0.4);
         }
 
         .skill-bubble.tertiary:hover {
-            box-shadow: 0 6px 20px rgba(168, 144, 118, 0.35);
+            box-shadow: 0 8px 25px rgba(168, 144, 118, 0.4);
         }
 
         /* Journey Timeline */
