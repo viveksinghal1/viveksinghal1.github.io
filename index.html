@@ -36,6 +36,11 @@
             color: var(--ink-primary);
             line-height: 1.8;
             overflow-x: hidden;
+            max-width: 100vw;
+        }
+
+        html {
+            overflow-x: hidden;
         }
 
         /* ==================== TAB NAVIGATION ==================== */
@@ -253,6 +258,7 @@
         .section-container {
             max-width: 1000px;
             margin: 0 auto;
+            overflow: hidden;
         }
 
         .handwritten-title {
@@ -366,6 +372,8 @@
             justify-content: center;
             gap: 1rem;
             margin-top: 2rem;
+            max-width: 100%;
+            overflow: hidden;
         }
 
         .skill-bubble {
@@ -524,6 +532,7 @@
         .projects-section {
             padding: 6rem 2rem;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            overflow: hidden;
         }
 
         .projects-section .handwritten-title {
@@ -927,6 +936,53 @@
             justify-content: center;
             align-items: flex-start;
             perspective: 1000px;
+        }
+
+        .papers-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            max-width: 900px;
+            width: 100%;
+            padding-bottom: 100px;
+        }
+
+        .paper-page {
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .paper-page:hover {
+            transform: rotate(0deg) translateY(-5px) !important;
+            box-shadow:
+                12px 16px 35px rgba(0,0,0,0.35),
+                5px 8px 15px rgba(0,0,0,0.25),
+                inset 0 0 60px rgba(139, 90, 43, 0.1);
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 15px;
+            right: 25px;
+            font-family: 'Caveat', cursive;
+            font-size: 1.2rem;
+            color: rgba(139, 90, 43, 0.4);
+            z-index: 15;
+        }
+
+        /* Desktop: Show all 9 pages stacked vertically */
+        @media (min-width: 769px) {
+            .papers-stack {
+                gap: 2.5rem;
+            }
+
+            .mobile-hidden {
+                display: none;
+            }
+        }
+
+        .mobile-hidden {
+            display: block;
         }
 
         .notebook {
@@ -1346,10 +1402,29 @@
         /* Responsive */
         @media (max-width: 768px) {
             .tab-nav {
-                top: auto;
+                top: 15px;
+                right: 15px;
+                bottom: auto;
+                transform: none;
+                padding: 5px;
+                gap: 4px;
+            }
+
+            .tab-btn {
+                font-size: 1.1rem;
+                padding: 6px 14px;
+            }
+
+            .download-resume-btn {
                 bottom: 20px;
-                right: 50%;
-                transform: translateX(50%);
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 1.1rem;
+                padding: 8px 16px;
+            }
+
+            .download-resume-btn:hover {
+                transform: translateX(-50%) translateY(-2px);
             }
 
             .about-content {
@@ -1378,16 +1453,283 @@
                 left: 20px;
             }
 
-            .page {
-                padding: 2rem 1.5rem 2rem 2.5rem;
+            /* Resume paper - stacked papers on mobile */
+            .resume-tab {
+                padding: 1.5rem 1rem;
+                min-height: auto;
+                align-items: center;
             }
 
-            .notebook::before {
-                left: 20px;
+            .papers-stack {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                padding-bottom: 80px;
+                max-width: 100%;
+            }
+
+            .paper-page {
+                transform: rotate(0deg) !important;
+            }
+
+            .paper-page:nth-child(odd) {
+                transform: rotate(-0.5deg) !important;
+            }
+
+            .paper-page:nth-child(even) {
+                transform: rotate(0.5deg) !important;
+            }
+
+            .notebook {
+                max-width: 100%;
+                border-radius: 4px;
+            }
+
+            .page {
+                padding: 1.2rem;
+            }
+
+            .page-number {
+                bottom: 8px;
+                right: 12px;
+                font-size: 1rem;
+            }
+
+            /* Mobile typography */
+            .papers-stack .header {
+                padding-bottom: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .papers-stack .name {
+                font-size: 1.8rem;
+            }
+
+            .papers-stack .title {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .papers-stack .contact-links {
+                flex-direction: column;
+                gap: 0.4rem;
+                font-size: 0.85rem;
+            }
+
+            .papers-stack .section {
+                margin-bottom: 0.8rem;
+            }
+
+            .papers-stack .section-title {
+                font-size: 1.4rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .papers-stack .about-text-resume {
+                font-size: 0.9rem;
+                padding: 0.8rem;
+                line-height: 1.5;
+            }
+
+            .papers-stack .experience-item {
+                margin-bottom: 0.8rem;
+                padding-left: 0.8rem;
+                border-left-width: 2px;
+            }
+
+            .papers-stack .company-name {
+                font-size: 1.2rem;
+            }
+
+            .papers-stack .role {
+                font-size: 0.95rem;
+            }
+
+            .papers-stack .duration {
+                font-size: 0.8rem;
+            }
+
+            .papers-stack .experience-details {
+                font-size: 0.85rem;
+                padding-left: 0.8rem;
+                line-height: 1.4;
+            }
+
+            .papers-stack .experience-details li {
+                margin-bottom: 0.3rem;
+            }
+
+            .papers-stack .skills-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+
+            .papers-stack .skill-category h4 {
+                font-size: 1rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .papers-stack .skill-tags {
+                gap: 0.3rem;
+            }
+
+            .papers-stack .skill-tag {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.5rem;
+            }
+
+            .papers-stack .project-card {
+                padding: 0.8rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .papers-stack .project-title {
+                font-size: 1.1rem;
+            }
+
+            .papers-stack .project-links a {
+                font-size: 0.85rem;
+                margin-right: 0.8rem;
+            }
+
+            .papers-stack .project-card > p {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+
+            .papers-stack .education-card {
+                padding: 0.8rem;
+            }
+
+            .papers-stack .school-name {
+                font-size: 1.1rem;
+            }
+
+            .papers-stack .education-card .role,
+            .papers-stack .education-card .duration,
+            .papers-stack .education-card p {
+                font-size: 0.85rem;
+            }
+
+            .papers-stack .cert-list {
+                font-size: 0.85rem;
+            }
+
+            .papers-stack .cert-list li {
+                padding: 0.4rem 0;
+            }
+
+            /* Hide crack effects on mobile for cleaner look */
+            .paper-chip-tr,
+            .paper-chip-bl,
+            .crack-overlay {
+                display: none;
+            }
+
+            .notebook::before,
+            .notebook::after {
+                display: none;
+            }
+
+            /* Hide duplicate section titles on mobile */
+            .mobile-hidden {
+                display: none;
+            }
+
+            /* Smaller text in resume for mobile */
+            .name {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .experience-details {
+                font-size: 0.95rem;
             }
 
             .hero-name {
                 font-size: 2.5rem;
+            }
+
+            /* Red margin line adjust */
+            .page::after {
+                left: 25px;
+            }
+
+            /* Laptop on mobile */
+            .laptop-container {
+                overflow: hidden;
+                max-width: 100%;
+            }
+
+            .macbook-lid {
+                width: 280px;
+                height: 175px;
+            }
+
+            .macbook-base {
+                width: 300px;
+            }
+
+            .project-container {
+                min-height: 120vh;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 480px) {
+            .notebook {
+                margin: 0 -0.5rem;
+                border-radius: 0;
+            }
+
+            .page {
+                padding: 1.2rem 0.8rem 1.2rem 1.2rem;
+            }
+
+            .name {
+                font-size: 2rem;
+            }
+
+            .title {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .company-name {
+                font-size: 1.3rem;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .page::after {
+                display: none;
+            }
+
+            .macbook-lid {
+                width: 240px;
+                height: 150px;
+            }
+
+            .macbook-base {
+                width: 260px;
             }
         }
 
@@ -1664,160 +2006,233 @@
     <!-- ==================== RESUME TAB ==================== -->
     <div id="resume" class="tab-content">
         <div class="resume-tab">
-            <div class="notebook">
-                <div class="paper-chip-tr"></div>
-                <div class="paper-chip-bl"></div>
-                <div class="crack-overlay"></div>
-                <div class="page">
-                    <header class="header">
-                        <h1 class="name">Vivek Singhal</h1>
-                        <p class="title">Frontend Engineer | Delhi, India</p>
-                        <div class="contact-links">
-                            <a href="mailto:viveksinghal0003@gmail.com">@ viveksinghal0003@gmail.com</a>
-                            <a href="https://www.linkedin.com/in/vivek-singhal-a22589158/" target="_blank">in LinkedIn</a>
-                            <a href="https://github.com/viveksinghal1" target="_blank">&lt;/&gt; GitHub</a>
-                            <a href="tel:+917302477139"># +91 7302477139</a>
-                        </div>
-                    </header>
+            <div class="papers-stack">
 
-                    <section class="section">
-                        <h2 class="section-title">Summary</h2>
-                        <p class="about-text-resume">
-                            Frontend Engineer with <strong>5+ years</strong> of experience in <strong>React, Redux, and Context API</strong>.
-                            Proven track record in performance optimization (code-splitting, CDN), and enterprise integrations across
-                            <strong>AWS, Azure, and GCP</strong>. Strong focus on testing (Cypress, Jest, RTL) and delivering
-                            personalized, responsive UIs.
-                        </p>
-                    </section>
-
-                    <section class="section">
-                        <h2 class="section-title">Experience</h2>
-
-                        <div class="experience-item">
-                            <h3 class="company-name">Workspan</h3>
-                            <p class="role">Software Engineer 2</p>
-                            <p class="duration">March 2024 - Present | Bangalore, India (Remote)</p>
-                            <ul class="experience-details">
-                                <li>Led development of scalable React-based front-end architecture supporting multi-seller operations, boosting flexibility by 50%</li>
-                                <li>Implemented Redux and Context API state management with performance optimizations, reducing load time by 25%</li>
-                                <li>Enhanced product stability through end-to-end testing with Cypress</li>
-                                <li>Improved accessibility (WCAG 2.1), driving 30% higher adoption rate</li>
-                                <li>Optimized static asset delivery via CDN caching, reducing FCP by 20%</li>
-                            </ul>
-                        </div>
-
-                        <div class="experience-item">
-                            <h3 class="company-name">Workspan</h3>
-                            <p class="role">Software Engineer</p>
-                            <p class="duration">Jan 2023 - March 2024 | Bangalore, India (Remote)</p>
-                            <ul class="experience-details">
-                                <li>Spearheaded development of Workspan Marketplace Hyperscaler frontend, attracting 100+ enterprise customers</li>
-                                <li>Designed configurable UI architecture boosting satisfaction by 75%</li>
-                                <li>Built comprehensive UI test coverage reducing production bugs by 20%</li>
-                                <li>Integrated AWS Marketplace Developer APIs with React-based UI</li>
-                            </ul>
-                        </div>
-
-                        <div class="experience-item">
-                            <h3 class="company-name">Gemini Solutions</h3>
-                            <p class="role">Software Engineer L1</p>
-                            <p class="duration">Apr 2022 - Dec 2022 | Gurugram, India</p>
-                            <ul class="experience-details">
-                                <li>Developed React-based admin dashboards on top of REST APIs</li>
-                                <li>Migrated legacy UI from jQuery to React, improving developer onboarding</li>
-                            </ul>
-                        </div>
-
-                        <div class="experience-item">
-                            <h3 class="company-name">Algoscale Technologies</h3>
-                            <p class="role">Software Developer</p>
-                            <p class="duration">May 2020 - March 2022 | Noida, India</p>
-                            <ul class="experience-details">
-                                <li>Built PWA with offline caching, adaptive SEO, and SSR, improving load times by 20%</li>
-                                <li>Designed responsive UIs and data visualization dashboards with Chart.js</li>
-                            </ul>
-                        </div>
-                    </section>
-
-                    <section class="section">
-                        <h2 class="section-title">Skills</h2>
-                        <div class="skills-container">
-                            <div class="skill-category">
-                                <h4>Languages</h4>
-                                <div class="skill-tags">
-                                    <span class="skill-tag">TypeScript</span>
-                                    <span class="skill-tag">JavaScript</span>
-                                    <span class="skill-tag">Python</span>
-                                    <span class="skill-tag">CSS</span>
-                                    <span class="skill-tag">HTML</span>
-                                </div>
+                <!-- Page 1: Header & Summary -->
+                <div class="notebook paper-page page-1" style="transform: rotate(-1deg);">
+                    <div class="paper-chip-tr"></div>
+                    <div class="crack-overlay"></div>
+                    <span class="page-number">1</span>
+                    <div class="page">
+                        <header class="header">
+                            <h1 class="name">Vivek Singhal</h1>
+                            <p class="title">Frontend Engineer | Delhi, India</p>
+                            <div class="contact-links">
+                                <a href="mailto:viveksinghal0003@gmail.com">@ viveksinghal0003@gmail.com</a>
+                                <a href="https://www.linkedin.com/in/vivek-singhal-a22589158/" target="_blank">in LinkedIn</a>
+                                <a href="https://github.com/viveksinghal1" target="_blank">&lt;/&gt; GitHub</a>
+                                <a href="tel:+917302477139"># +91 7302477139</a>
                             </div>
-                            <div class="skill-category">
-                                <h4>Frameworks</h4>
-                                <div class="skill-tags">
-                                    <span class="skill-tag">React</span>
-                                    <span class="skill-tag">Redux</span>
-                                    <span class="skill-tag">Angular</span>
-                                    <span class="skill-tag">Cypress</span>
-                                </div>
-                            </div>
-                            <div class="skill-category">
-                                <h4>Tools</h4>
-                                <div class="skill-tags">
-                                    <span class="skill-tag">Git</span>
-                                    <span class="skill-tag">Webpack</span>
-                                    <span class="skill-tag">Jest</span>
-                                    <span class="skill-tag">JIRA</span>
-                                </div>
-                            </div>
-                            <div class="skill-category">
-                                <h4>Cloud</h4>
-                                <div class="skill-tags">
-                                    <span class="skill-tag">AWS</span>
-                                    <span class="skill-tag">GCP</span>
-                                    <span class="skill-tag">Azure</span>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                        </header>
 
-                    <section class="section">
-                        <h2 class="section-title">Projects</h2>
-                        <div class="project-card">
-                            <h3 class="project-title">GitHub Finder App</h3>
-                            <div class="project-links">
-                                <a href="https://github-finder-app-jet.vercel.app/user/viveksinghal1" target="_blank">Live Demo</a>
-                                <a href="https://github.com/viveksinghal1/github-finder-app/" target="_blank">GitHub</a>
-                            </div>
-                            <p>Search and view GitHub profiles with repo details including watchers, forks, issues, and stars.</p>
-                            <div class="skill-tags" style="margin-top: 0.8rem;">
-                                <span class="skill-tag">React</span>
-                                <span class="skill-tag">Node.js</span>
-                                <span class="skill-tag">GitHub APIs</span>
-                                <span class="skill-tag">Vercel</span>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="section">
-                        <h2 class="section-title">Education</h2>
-                        <div class="education-card">
-                            <h3 class="school-name">GLA University</h3>
-                            <p class="role">Bachelor's in Technology (CSE)</p>
-                            <p class="duration">2017 - 2021 | Mathura, India</p>
-                            <p><strong>CGPA: 8.54 / 10.0 (Honors)</strong></p>
-                        </div>
-                    </section>
-
-                    <section class="section">
-                        <h2 class="section-title">Certifications</h2>
-                        <ul class="cert-list">
-                            <li><a href="https://www.udemy.com/certificate/UC-c3522507-a402-4a2f-98cd-bae149ce9f3a/" target="_blank">React Front To Back - Udemy</a></li>
-                            <li><a href="https://www.freecodecamp.org/certification/fcc6d9baf52-3e01-4e0e-bc12-4a83c6931911/javascript-algorithms-and-data-structures" target="_blank">JavaScript DSA - FreeCodeCamp</a></li>
-                            <li><a href="https://drive.google.com/drive/u/0/folders/1FFyo7dN2zVIOHK0fVCdUrDViOnAWUAl0" target="_blank">Other Certifications</a></li>
-                        </ul>
-                    </section>
+                        <section class="section section-summary">
+                            <h2 class="section-title">Summary</h2>
+                            <p class="about-text-resume">
+                                Frontend Engineer with <strong>5+ years</strong> of experience in <strong>React, Redux, and Context API</strong>.
+                                Proven track record in performance optimization (code-splitting, CDN), and enterprise integrations across
+                                <strong>AWS, Azure, and GCP</strong>. Strong focus on testing (Cypress, Jest, RTL) and delivering
+                                personalized, responsive UIs.
+                            </p>
+                        </section>
+                    </div>
                 </div>
+
+                <!-- Page 2: Experience - Workspan SE2 -->
+                <div class="notebook paper-page page-2" style="transform: rotate(0.5deg);">
+                    <div class="crack-overlay"></div>
+                    <span class="page-number">2</span>
+                    <div class="page">
+                        <section class="section section-exp-1">
+                            <h2 class="section-title">Experience</h2>
+                            <div class="experience-item">
+                                <h3 class="company-name">Workspan</h3>
+                                <p class="role">Software Engineer 2</p>
+                                <p class="duration">March 2024 - Present | Bangalore, India (Remote)</p>
+                                <ul class="experience-details">
+                                    <li>Led development of scalable React-based front-end architecture supporting multi-seller operations, boosting flexibility by 50%</li>
+                                    <li>Implemented Redux and Context API state management with performance optimizations, reducing load time by 25%</li>
+                                    <li>Enhanced product stability through end-to-end testing with Cypress</li>
+                                    <li>Improved accessibility (WCAG 2.1), driving 30% higher adoption rate</li>
+                                    <li>Optimized static asset delivery via CDN caching, reducing FCP by 20%</li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Page 3: Experience - Workspan SE -->
+                <div class="notebook paper-page page-3" style="transform: rotate(-0.8deg);">
+                    <div class="paper-chip-bl"></div>
+                    <div class="crack-overlay"></div>
+                    <span class="page-number">3</span>
+                    <div class="page">
+                        <section class="section section-exp-2">
+                            <h2 class="section-title mobile-hidden">Experience</h2>
+                            <div class="experience-item">
+                                <h3 class="company-name">Workspan</h3>
+                                <p class="role">Software Engineer</p>
+                                <p class="duration">Jan 2023 - March 2024 | Bangalore, India (Remote)</p>
+                                <ul class="experience-details">
+                                    <li>Spearheaded development of Workspan Marketplace Hyperscaler frontend, attracting 100+ enterprise customers</li>
+                                    <li>Designed configurable UI architecture boosting satisfaction by 75%</li>
+                                    <li>Built comprehensive UI test coverage reducing production bugs by 20%</li>
+                                    <li>Integrated AWS Marketplace Developer APIs with React-based UI</li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Page 4: Experience - Gemini -->
+                <div class="notebook paper-page page-4" style="transform: rotate(0.3deg);">
+                    <div class="crack-overlay"></div>
+                    <span class="page-number">4</span>
+                    <div class="page">
+                        <section class="section section-exp-3">
+                            <h2 class="section-title mobile-hidden">Experience</h2>
+                            <div class="experience-item">
+                                <h3 class="company-name">Gemini Solutions</h3>
+                                <p class="role">Software Engineer L1</p>
+                                <p class="duration">Apr 2022 - Dec 2022 | Gurugram, India</p>
+                                <ul class="experience-details">
+                                    <li>Developed React-based admin dashboards on top of REST APIs</li>
+                                    <li>Migrated legacy UI from jQuery to React, improving developer onboarding</li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Page 5: Experience - Algoscale -->
+                <div class="notebook paper-page page-5" style="transform: rotate(-0.5deg);">
+                    <div class="paper-chip-tr"></div>
+                    <div class="crack-overlay"></div>
+                    <span class="page-number">5</span>
+                    <div class="page">
+                        <section class="section section-exp-4">
+                            <h2 class="section-title mobile-hidden">Experience</h2>
+                            <div class="experience-item">
+                                <h3 class="company-name">Algoscale Technologies</h3>
+                                <p class="role">Software Developer</p>
+                                <p class="duration">May 2020 - March 2022 | Noida, India</p>
+                                <ul class="experience-details">
+                                    <li>Built PWA with offline caching, adaptive SEO, and SSR, improving load times by 20%</li>
+                                    <li>Designed responsive UIs and data visualization dashboards with Chart.js</li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Page 6: Skills -->
+                <div class="notebook paper-page page-6" style="transform: rotate(0.7deg);">
+                    <div class="crack-overlay"></div>
+                    <span class="page-number">6</span>
+                    <div class="page">
+                        <section class="section section-skills">
+                            <h2 class="section-title">Skills</h2>
+                            <div class="skills-container">
+                                <div class="skill-category">
+                                    <h4>Languages</h4>
+                                    <div class="skill-tags">
+                                        <span class="skill-tag">TypeScript</span>
+                                        <span class="skill-tag">JavaScript</span>
+                                        <span class="skill-tag">Python</span>
+                                        <span class="skill-tag">CSS</span>
+                                        <span class="skill-tag">HTML</span>
+                                    </div>
+                                </div>
+                                <div class="skill-category">
+                                    <h4>Frameworks</h4>
+                                    <div class="skill-tags">
+                                        <span class="skill-tag">React</span>
+                                        <span class="skill-tag">Redux</span>
+                                        <span class="skill-tag">Angular</span>
+                                        <span class="skill-tag">Cypress</span>
+                                    </div>
+                                </div>
+                                <div class="skill-category">
+                                    <h4>Tools</h4>
+                                    <div class="skill-tags">
+                                        <span class="skill-tag">Git</span>
+                                        <span class="skill-tag">Webpack</span>
+                                        <span class="skill-tag">Jest</span>
+                                        <span class="skill-tag">JIRA</span>
+                                    </div>
+                                </div>
+                                <div class="skill-category">
+                                    <h4>Cloud</h4>
+                                    <div class="skill-tags">
+                                        <span class="skill-tag">AWS</span>
+                                        <span class="skill-tag">GCP</span>
+                                        <span class="skill-tag">Azure</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Page 7: Projects -->
+                <div class="notebook paper-page page-7" style="transform: rotate(-0.6deg);">
+                    <div class="paper-chip-bl"></div>
+                    <div class="crack-overlay"></div>
+                    <span class="page-number">7</span>
+                    <div class="page">
+                        <section class="section section-projects">
+                            <h2 class="section-title">Projects</h2>
+                            <div class="project-card">
+                                <h3 class="project-title">GitHub Finder App</h3>
+                                <div class="project-links">
+                                    <a href="https://github-finder-app-jet.vercel.app/user/viveksinghal1" target="_blank">Live Demo</a>
+                                    <a href="https://github.com/viveksinghal1/github-finder-app/" target="_blank">GitHub</a>
+                                </div>
+                                <p>Search and view GitHub profiles with repo details including watchers, forks, issues, and stars.</p>
+                                <div class="skill-tags" style="margin-top: 0.8rem;">
+                                    <span class="skill-tag">React</span>
+                                    <span class="skill-tag">Node.js</span>
+                                    <span class="skill-tag">GitHub APIs</span>
+                                    <span class="skill-tag">Vercel</span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Page 8: Education -->
+                <div class="notebook paper-page page-8" style="transform: rotate(0.4deg);">
+                    <div class="crack-overlay"></div>
+                    <span class="page-number">8</span>
+                    <div class="page">
+                        <section class="section section-education">
+                            <h2 class="section-title">Education</h2>
+                            <div class="education-card">
+                                <h3 class="school-name">GLA University</h3>
+                                <p class="role">Bachelor's in Technology (CSE)</p>
+                                <p class="duration">2017 - 2021 | Mathura, India</p>
+                                <p><strong>CGPA: 8.54 / 10.0 (Honors)</strong></p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Page 9: Certifications -->
+                <div class="notebook paper-page page-9" style="transform: rotate(-0.9deg);">
+                    <div class="paper-chip-tr"></div>
+                    <div class="crack-overlay"></div>
+                    <span class="page-number">9</span>
+                    <div class="page">
+                        <section class="section section-certs">
+                            <h2 class="section-title">Certifications</h2>
+                            <ul class="cert-list">
+                                <li><a href="https://www.udemy.com/certificate/UC-c3522507-a402-4a2f-98cd-bae149ce9f3a/" target="_blank">React Front To Back - Udemy</a></li>
+                                <li><a href="https://www.freecodecamp.org/certification/fcc6d9baf52-3e01-4e0e-bc12-4a83c6931911/javascript-algorithms-and-data-structures" target="_blank">JavaScript DSA - FreeCodeCamp</a></li>
+                                <li><a href="https://drive.google.com/drive/u/0/folders/1FFyo7dN2zVIOHK0fVCdUrDViOnAWUAl0" target="_blank">Other Certifications</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
