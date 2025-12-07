@@ -980,7 +980,8 @@ body {
 .resume-tab {
     padding: 4rem 2rem;
     min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -1183,30 +1184,6 @@ body {
         inset -2px -2px 8px rgba(101, 67, 33, 0.2);
     pointer-events: none;
     z-index: 5;
-}
-
-/* Chipped corner - top right */
-.paper-chip-tr {
-    position: absolute;
-    top: -2px;
-    right: 15px;
-    width: 25px;
-    height: 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    clip-path: polygon(100% 0%, 0% 0%, 100% 100%);
-    z-index: 15;
-}
-
-/* Chipped corner - bottom left */
-.paper-chip-bl {
-    position: absolute;
-    bottom: -2px;
-    left: 30px;
-    width: 20px;
-    height: 15px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    clip-path: polygon(0% 100%, 0% 0%, 100% 100%);
-    z-index: 15;
 }
 
 /* Additional crack texture */
@@ -1851,8 +1828,6 @@ body {
     }
 
     /* Hide crack effects on mobile for cleaner look */
-    .paper-chip-tr,
-    .paper-chip-bl,
     .crack-overlay {
         display: none;
     }
