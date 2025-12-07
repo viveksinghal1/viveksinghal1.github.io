@@ -180,6 +180,7 @@ body {
     color: rgba(255,255,255,0.5);
     font-family: 'Patrick Hand', cursive;
     animation: bounce 2s infinite;
+    text-align: center;
 }
 
 .scroll-hint span {
@@ -993,11 +994,94 @@ body {
     max-width: 900px;
     width: 100%;
     padding-bottom: 100px;
+    padding-top: 20px;
+    overflow: visible;
 }
 
 .paper-page {
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-origin: top center;
+}
+
+/* Pushpin element styles - glossy 3D sphere */
+.pushpin {
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    width: 28px;
+    height: 28px;
+    background:
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 8%, transparent 20%),
+        radial-gradient(circle at 50% 50%,
+            #ff6b6b 0%,
+            #e74c3c 30%,
+            #c0392b 60%,
+            #922b21 80%,
+            #641e16 100%);
+    border-radius: 50%;
+    box-shadow:
+        0 4px 8px rgba(0,0,0,0.5),
+        0 2px 4px rgba(0,0,0,0.3),
+        inset 0 -3px 6px rgba(0,0,0,0.4),
+        inset 0 3px 6px rgba(255,255,255,0.15);
+    z-index: 200;
+    pointer-events: none;
+}
+
+/* Pin needle hole on paper */
+.pin-hole {
+    position: absolute;
+    top: 24px;
+    left: 25px;
+    width: 5px;
+    height: 5px;
+    background: rgba(80,50,20,0.4);
+    border-radius: 50%;
+    z-index: 50;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.4);
+}
+
+/* Different pin colors for variety - glossy spheres */
+.pushpin.blue {
+    background:
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 8%, transparent 20%),
+        radial-gradient(circle at 50% 50%, #5dade2 0%, #3498db 30%, #2e86de 60%, #1a5276 80%, #154360 100%);
+}
+.pushpin.green {
+    background:
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 8%, transparent 20%),
+        radial-gradient(circle at 50% 50%, #58d68d 0%, #2ecc71 30%, #28b463 60%, #1d8348 80%, #145a32 100%);
+}
+.pushpin.yellow {
+    background:
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 8%, transparent 20%),
+        radial-gradient(circle at 50% 50%, #f7dc6f 0%, #f4d03f 30%, #f1c40f 60%, #b7950b 80%, #7d6608 100%);
+}
+.pushpin.purple {
+    background:
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 8%, transparent 20%),
+        radial-gradient(circle at 50% 50%, #bb8fce 0%, #a569bd 30%, #8e44ad 60%, #6c3483 80%, #4a235a 100%);
+}
+.pushpin.orange {
+    background:
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 8%, transparent 20%),
+        radial-gradient(circle at 50% 50%, #f0b27a 0%, #eb984e 30%, #e67e22 60%, #a04000 80%, #6e2c00 100%);
+}
+.pushpin.teal {
+    background:
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 8%, transparent 20%),
+        radial-gradient(circle at 50% 50%, #76d7c4 0%, #48c9b0 30%, #1abc9c 60%, #148f77 80%, #0e6655 100%);
+}
+.pushpin.pink {
+    background:
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 8%, transparent 20%),
+        radial-gradient(circle at 50% 50%, #f1948a 0%, #ec7063 30%, #e74c3c 60%, #a93226 80%, #78281f 100%);
+}
+.pushpin.sky {
+    background:
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 8%, transparent 20%),
+        radial-gradient(circle at 50% 50%, #85c1e9 0%, #5dade2 30%, #3498db 60%, #2471a3 80%, #1a5276 100%);
 }
 
 .paper-page:hover {
@@ -1610,6 +1694,21 @@ body {
 
     .paper-page:nth-child(even) {
         transform: rotate(0.5deg) !important;
+    }
+
+    /* Smaller pushpins on mobile */
+    .pushpin {
+        width: 22px;
+        height: 22px;
+        top: 8px;
+        left: 10px;
+    }
+
+    .pin-hole {
+        top: 19px;
+        left: 19px;
+        width: 4px;
+        height: 4px;
     }
 
     .notebook {
