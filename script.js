@@ -6,10 +6,12 @@ tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         const tabId = btn.dataset.tab;
 
+        // Update button states
         tabBtns.forEach(b => b.classList.remove('active'));
-        tabContents.forEach(c => c.classList.remove('active'));
-
         btn.classList.add('active');
+
+        // Switch tabs
+        tabContents.forEach(content => content.classList.remove('active'));
         document.getElementById(tabId).classList.add('active');
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -190,9 +192,183 @@ function initLaptopAnimation() {
     setTimeout(updateLaptops, 100);
 }
 
-// Initialize
+// Initialize laptop animation
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initLaptopAnimation);
 } else {
     initLaptopAnimation();
+}
+
+// ==================== IMMERSIVE ENHANCEMENTS ====================
+
+// 1. Typing Animation for Hero Tagline
+function initTypingAnimation() {
+    const tagline = document.querySelector('.hero-tagline');
+    if (!tagline) return;
+
+    const text = tagline.textContent;
+    tagline.innerHTML = '';
+    tagline.style.visibility = 'visible';
+
+    let i = 0;
+    const cursor = document.createElement('span');
+    cursor.className = 'typing-cursor';
+    tagline.appendChild(cursor);
+
+    function type() {
+        if (i < text.length) {
+            tagline.insertBefore(document.createTextNode(text.charAt(i)), cursor);
+            i++;
+            setTimeout(type, 40);
+        } else {
+            // Remove cursor after typing completes
+            setTimeout(() => cursor.remove(), 2000);
+        }
+    }
+
+    // Start after hero animations complete
+    setTimeout(type, 1500);
+}
+
+// 2. Hero Mouse Parallax Effect
+function initHeroParallax() {
+    const hero = document.querySelector('.hero');
+    const floatItems = document.querySelectorAll('.float-item');
+
+    if (!hero || floatItems.length === 0) return;
+
+    hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+
+        // Update CSS custom properties for gradient
+        hero.style.setProperty('--mouse-x', `${x * 100}%`);
+        hero.style.setProperty('--mouse-y', `${y * 100}%`);
+
+        // Parallax for floating elements
+        floatItems.forEach((item, index) => {
+            const speed = (index % 3 + 1) * 8;
+            const xOffset = (x - 0.5) * speed;
+            const yOffset = (y - 0.5) * speed;
+            item.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+        });
+    });
+
+    hero.addEventListener('mouseleave', () => {
+        hero.style.setProperty('--mouse-x', '50%');
+        hero.style.setProperty('--mouse-y', '50%');
+        floatItems.forEach(item => {
+            item.style.transform = 'translate(0, 0)';
+        });
+    });
+}
+
+// 3. Timeline Dots Sequential Animation
+function initTimelineAnimation() {
+    const timeline = document.querySelector('.timeline');
+    if (!timeline) return;
+
+    const dots = timeline.querySelectorAll('.timeline-dot');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                dots.forEach((dot, index) => {
+                    setTimeout(() => {
+                        dot.classList.add('animate');
+                    }, index * 200);
+                });
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    observer.observe(timeline);
+}
+
+// 4. Device 3D Tilt on Hover (for project info visible state)
+function initDeviceTilt() {
+    const projectContainers = document.querySelectorAll('.project-container');
+
+    projectContainers.forEach(container => {
+        const macbook = container.querySelector('.macbook');
+        const iphone = container.querySelector('.iphone');
+        const laptopContainer = container.querySelector('.laptop-container');
+        const iphoneContainer = container.querySelector('.iphone-container');
+
+        // MacBook tilt
+        if (laptopContainer && macbook) {
+            let isHovering = false;
+
+            laptopContainer.addEventListener('mouseenter', () => {
+                isHovering = true;
+            });
+
+            laptopContainer.addEventListener('mousemove', (e) => {
+                if (!isHovering) return;
+
+                const projectInfo = container.querySelector('.project-info');
+                if (!projectInfo || !projectInfo.classList.contains('visible')) return;
+
+                const rect = laptopContainer.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+                macbook.style.transform = `scale(1) rotateY(${x * 20}deg) rotateX(${-y * 15}deg)`;
+            });
+
+            laptopContainer.addEventListener('mouseleave', () => {
+                isHovering = false;
+                const projectInfo = container.querySelector('.project-info');
+                if (projectInfo && projectInfo.classList.contains('visible')) {
+                    macbook.style.transform = 'scale(1) rotateY(0deg) rotateX(10deg)';
+                }
+            });
+        }
+
+        // iPhone tilt (mobile)
+        if (iphoneContainer && iphone) {
+            let isHovering = false;
+
+            iphoneContainer.addEventListener('mouseenter', () => {
+                isHovering = true;
+            });
+
+            iphoneContainer.addEventListener('mousemove', (e) => {
+                if (!isHovering) return;
+
+                const projectInfo = container.querySelector('.project-info');
+                if (!projectInfo || !projectInfo.classList.contains('visible')) return;
+
+                const rect = iphoneContainer.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+                iphone.style.transform = `scale(1) rotateY(${x * 20}deg) rotateX(${-y * 15}deg)`;
+            });
+
+            iphoneContainer.addEventListener('mouseleave', () => {
+                isHovering = false;
+                const projectInfo = container.querySelector('.project-info');
+                if (projectInfo && projectInfo.classList.contains('visible')) {
+                    iphone.style.transform = 'scale(1) rotateY(0deg) rotateX(8deg)';
+                }
+            });
+        }
+    });
+}
+
+// Initialize all immersive enhancements
+function initImmersiveEffects() {
+    initTypingAnimation();
+    initHeroParallax();
+    initTimelineAnimation();
+    initDeviceTilt();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initImmersiveEffects);
+} else {
+    initImmersiveEffects();
 }
