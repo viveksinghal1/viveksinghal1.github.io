@@ -1,0 +1,73 @@
+# Allow general web crawlers to visit and rate the site
+User-agent: *
+Allow: /
+
+# Block AI training crawlers from scraping source code
+# OpenAI (GPT)
+User-agent: GPTBot
+Disallow: /
+
+# Common Crawl (used by many AI models)
+User-agent: CCBot
+Disallow: /
+
+# Google AI (Bard/Gemini)
+User-agent: Google-Extended
+Disallow: /
+
+# Anthropic (Claude)
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+# Cohere
+User-agent: cohere-ai
+Disallow: /
+
+# AI2 (AllenAI)
+User-agent: ai2-bot
+Disallow: /
+
+# Omgili
+User-agent: Omgilibot
+Disallow: /
+
+# Facebook AI
+User-agent: FacebookBot
+Disallow: /
+
+# Applebot-Extended (Apple AI)
+User-agent: Applebot-Extended
+Disallow: /
+
+# Bytespider (ByteDance/TikTok)
+User-agent: Bytespider
+Disallow: /
+
+# Diffbot
+User-agent: Diffbot
+Disallow: /
+
+# PerplexityBot
+User-agent: PerplexityBot
+Disallow: /
+
+# YouBot
+User-agent: YouBot
+Disallow: /
+
+# ImagesiftBot
+User-agent: ImagesiftBot
+Disallow: /
+
+# Allow search engines to index for rating/ranking
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
