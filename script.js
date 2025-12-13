@@ -372,3 +372,6 @@ if (document.readyState === 'loading') {
 } else {
     initImmersiveEffects();
 }
+
+// ==================== CONSTELLATION SKILLS ====================
+// Pure CSS/SVG implementation - no JS needed

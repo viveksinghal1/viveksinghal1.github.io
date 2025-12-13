@@ -82,27 +82,176 @@
 
         <!-- Skills Section -->
         <section class="skills-section">
-            <div class="section-container">
+            <div class="section-container" style="max-width: 1200px; overflow: visible;">
                 <h2 class="handwritten-title reveal">Things I'm good at...</h2>
-                <div class="skills-cloud reveal">
-                    <span class="skill-bubble primary">React</span>
-                    <span class="skill-bubble primary">TypeScript</span>
-                    <span class="skill-bubble secondary">Redux</span>
-                    <span class="skill-bubble tertiary">JavaScript</span>
-                    <span class="skill-bubble secondary">Context API</span>
-                    <span class="skill-bubble tertiary">Cypress</span>
-                    <span class="skill-bubble primary">AWS</span>
-                    <span class="skill-bubble tertiary">Jest</span>
-                    <span class="skill-bubble secondary">Angular</span>
-                    <span class="skill-bubble tertiary">Chart.js</span>
-                    <span class="skill-bubble secondary">Material UI</span>
-                    <span class="skill-bubble tertiary">Git</span>
-                    <span class="skill-bubble primary">GCP</span>
-                    <span class="skill-bubble tertiary">Webpack</span>
-                    <span class="skill-bubble secondary">REST APIs</span>
-                    <span class="skill-bubble tertiary">HTML/CSS</span>
-                    <span class="skill-bubble secondary">RTL</span>
-                    <span class="skill-bubble tertiary">Python</span>
+                <div class="constellation-wrapper reveal">
+                    <svg class="constellation-lines" preserveAspectRatio="none"></svg>
+                    <div class="skill-clusters">
+                        <!-- Languages Cluster -->
+                        <div class="skill-cluster" data-cluster="languages">
+                            <h3 class="cluster-label">Languages</h3>
+                            <div class="cluster-nodes">
+                                <div class="skill-node" data-skill="TypeScript">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript">
+                                    <span class="node-label">TypeScript</span>
+                                </div>
+                                <div class="skill-node" data-skill="JavaScript">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                                    <span class="node-label">JavaScript</span>
+                                </div>
+                                <div class="skill-node" data-skill="Python">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                                    <span class="node-label">Python</span>
+                                </div>
+                                <div class="skill-node" data-skill="CSS">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
+                                    <span class="node-label">CSS</span>
+                                </div>
+                                <div class="skill-node" data-skill="HTML">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
+                                    <span class="node-label">HTML</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Frameworks Cluster -->
+                        <div class="skill-cluster" data-cluster="frameworks">
+                            <h3 class="cluster-label">Frameworks</h3>
+                            <div class="cluster-nodes">
+                                <div class="skill-node primary" data-skill="React">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+                                    <span class="node-label">React</span>
+                                </div>
+                                <div class="skill-node" data-skill="Redux">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" alt="Redux">
+                                    <span class="node-label">Redux</span>
+                                </div>
+                                <div class="skill-node" data-skill="Angular">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="Angular">
+                                    <span class="node-label">Angular</span>
+                                </div>
+                                <div class="skill-node" data-skill="Material UI">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" alt="Material UI">
+                                    <span class="node-label">Material UI</span>
+                                </div>
+                                <div class="skill-node" data-skill="Cypress">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypressio/cypressio-original.svg" alt="Cypress">
+                                    <span class="node-label">Cypress</span>
+                                </div>
+                                <div class="skill-node" data-skill="AWS">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS">
+                                    <span class="node-label">AWS</span>
+                                </div>
+                                <div class="skill-node" data-skill="GCP">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="GCP">
+                                    <span class="node-label">GCP</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Libraries Cluster -->
+                        <div class="skill-cluster" data-cluster="libraries">
+                            <h3 class="cluster-label">Libraries</h3>
+                            <div class="cluster-nodes">
+                                <div class="skill-node" data-skill="Chart.js">
+                                    <div class="node-glow"></div>
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 19h14v2H5v-2zm0-8h4v6H5v-6zm5-4h4v10h-4V7zm5 2h4v8h-4V9z"/></svg>
+                                    <span class="node-label">Chart.js</span>
+                                </div>
+                                <div class="skill-node" data-skill="Bootstrap">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap">
+                                    <span class="node-label">Bootstrap</span>
+                                </div>
+                                <div class="skill-node" data-skill="Syncfusion">
+                                    <div class="node-glow"></div>
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                    <span class="node-label">Syncfusion</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tools Cluster -->
+                        <div class="skill-cluster" data-cluster="tools">
+                            <h3 class="cluster-label">Tools</h3>
+                            <div class="cluster-nodes">
+                                <div class="skill-node" data-skill="Git">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                                    <span class="node-label">Git</span>
+                                </div>
+                                <div class="skill-node" data-skill="NPM">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" alt="NPM">
+                                    <span class="node-label">NPM</span>
+                                </div>
+                                <div class="skill-node" data-skill="Jira">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg" alt="Jira">
+                                    <span class="node-label">Jira</span>
+                                </div>
+                                <div class="skill-node" data-skill="Notion">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/notion/notion-original.svg" alt="Notion">
+                                    <span class="node-label">Notion</span>
+                                </div>
+                                <div class="skill-node" data-skill="Figma">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+                                    <span class="node-label">Figma</span>
+                                </div>
+                                <div class="skill-node" data-skill="VS Code">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
+                                    <span class="node-label">VS Code</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Others Cluster -->
+                        <div class="skill-cluster" data-cluster="others">
+                            <h3 class="cluster-label">Others</h3>
+                            <div class="cluster-nodes">
+                                <div class="skill-node" data-skill="Unit Testing">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" alt="Unit Testing">
+                                    <span class="node-label">Unit Testing</span>
+                                </div>
+                                <div class="skill-node" data-skill="REST APIs">
+                                    <div class="node-glow"></div>
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 7H5a2 2 0 00-2 2v8a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-2M7 7V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                                    <span class="node-label">REST APIs</span>
+                                </div>
+                                <div class="skill-node" data-skill="TDD">
+                                    <div class="node-glow"></div>
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span class="node-label">TDD</span>
+                                </div>
+                                <div class="skill-node" data-skill="Webpack">
+                                    <div class="node-glow"></div>
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" alt="Webpack">
+                                    <span class="node-label">Webpack</span>
+                                </div>
+                                <div class="skill-node" data-skill="Responsive">
+                                    <div class="node-glow"></div>
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 6v10h5v-4a2 2 0 012-2h6a2 2 0 012 2v4h1V6H4zm16 10h-1v2h3V4H2v14h3v-2H4a2 2 0 01-2-2V6a2 2 0 012-2h16a2 2 0 012 2v10a2 2 0 01-2 2zm-9 0v4h6v-4h-6z"/></svg>
+                                    <span class="node-label">Responsive</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
