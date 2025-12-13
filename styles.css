@@ -1981,27 +1981,42 @@ body {
     }
 
     /* Skills - Mobile */
+    .skills-section {
+        padding: 4rem 1rem 100px;
+    }
+
     .skill-clusters {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
 
     .skill-cluster {
-        padding: 1rem;
+        padding: 1.2rem 1rem;
     }
 
-    .skill-nodes {
-        gap: 0.6rem;
+    .cluster-label {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .cluster-nodes {
+        gap: 0.4rem;
     }
 
     .skill-node {
-        width: 36px;
-        height: 36px;
+        min-width: 60px;
+        padding: 0.6rem 0.4rem;
+        gap: 0.4rem;
     }
 
-    .skill-node img {
-        width: 20px;
-        height: 20px;
+    .skill-node img,
+    .skill-node svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .node-label {
+        font-size: 0.7rem;
     }
 }
 
@@ -2050,6 +2065,10 @@ body {
     }
 
     /* Skills - Grouped Constellation Responsive */
+    .skills-section {
+        padding-bottom: 100px; /* Space for fixed download button */
+    }
+
     .skill-clusters {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
@@ -2059,18 +2078,29 @@ body {
         padding: 1.2rem 0.8rem;
     }
 
-    .cluster-title {
-        font-size: 0.85rem;
+    .cluster-label {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .cluster-nodes {
+        gap: 0.3rem;
     }
 
     .skill-node {
-        width: 40px;
-        height: 40px;
+        min-width: 50px;
+        padding: 0.5rem 0.3rem;
+        gap: 0.3rem;
     }
 
-    .skill-node img {
-        width: 22px;
-        height: 22px;
+    .skill-node img,
+    .skill-node svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .node-label {
+        font-size: 0.65rem;
     }
 
     .timeline::before {
