@@ -1669,31 +1669,6 @@ body {
     color: var(--ink-secondary);
 }
 
-.project-card {
-    background: var(--brown-6);
-    padding: 1.5rem;
-    border-radius: 12px;
-    border: 2px solid var(--brown-20);
-    margin-bottom: 1rem;
-}
-
-.project-title {
-    font-family: 'Caveat', cursive;
-    font-size: 1.4rem;
-    color: var(--ink-dark);
-}
-
-.project-links a {
-    color: var(--brown-secondary);
-    text-decoration: none;
-    margin-right: 1rem;
-    font-size: 0.95rem;
-}
-
-.project-links a:hover {
-    color: var(--brown-primary);
-}
-
 .education-card {
     background: var(--brown-6);
     padding: 1.5rem;
@@ -2262,25 +2237,6 @@ body {
     .papers-stack .skill-tag {
         font-size: 0.75rem;
         padding: 0.25rem 0.5rem;
-    }
-
-    .papers-stack .project-card {
-        padding: 0.8rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .papers-stack .project-title {
-        font-size: 1.1rem;
-    }
-
-    .papers-stack .project-links a {
-        font-size: 0.85rem;
-        margin-right: 0.8rem;
-    }
-
-    .papers-stack .project-card > p {
-        font-size: 0.85rem;
-        line-height: 1.4;
     }
 
     .papers-stack .education-card {
