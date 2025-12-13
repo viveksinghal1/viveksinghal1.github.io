@@ -1,22 +1,46 @@
-// Tab switching
+// Tab switching with URL routing
 const tabBtns = document.querySelectorAll('.tab-btn');
 const tabContents = document.querySelectorAll('.tab-content');
+
+function switchToTab(tabId) {
+    // Update button states
+    tabBtns.forEach(b => b.classList.remove('active'));
+    const activeBtn = document.querySelector(`[data-tab="${tabId}"]`);
+    if (activeBtn) activeBtn.classList.add('active');
+
+    // Switch tabs
+    tabContents.forEach(content => content.classList.remove('active'));
+    const activeContent = document.getElementById(tabId);
+    if (activeContent) activeContent.classList.add('active');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
 tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         const tabId = btn.dataset.tab;
 
-        // Update button states
-        tabBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+        // Update URL hash
+        window.location.hash = tabId;
 
-        // Switch tabs
-        tabContents.forEach(content => content.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
-
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        switchToTab(tabId);
     });
 });
+
+// Handle initial load and hash changes
+function handleRoute() {
+    const hash = window.location.hash.slice(1); // Remove the # symbol
+    const validTabs = ['home', 'resume'];
+    const tabId = validTabs.includes(hash) ? hash : 'home';
+
+    switchToTab(tabId);
+}
+
+// Listen for hash changes (browser back/forward buttons)
+window.addEventListener('hashchange', handleRoute);
+
+// Handle initial page load
+handleRoute();
 
 // Scroll reveal animations
 const revealElements = document.querySelectorAll('.reveal');
