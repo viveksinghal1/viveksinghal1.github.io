@@ -503,7 +503,7 @@ body {
 
 .skill-clusters {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     position: relative;
     z-index: 2;
@@ -525,18 +525,7 @@ body {
 }
 
 /* Cluster accent colors */
-.skill-cluster[data-cluster="languages"]::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 20px;
-    right: 20px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #3178C6, transparent);
-    border-radius: 0 0 2px 2px;
-}
-
-.skill-cluster[data-cluster="frameworks"]::before {
+.skill-cluster[data-cluster="core-frontend"]::before {
     content: '';
     position: absolute;
     top: 0;
@@ -547,7 +536,7 @@ body {
     border-radius: 0 0 2px 2px;
 }
 
-.skill-cluster[data-cluster="libraries"]::before {
+.skill-cluster[data-cluster="architecture"]::before {
     content: '';
     position: absolute;
     top: 0;
@@ -558,7 +547,7 @@ body {
     border-radius: 0 0 2px 2px;
 }
 
-.skill-cluster[data-cluster="tools"]::before {
+.skill-cluster[data-cluster="tooling"]::before {
     content: '';
     position: absolute;
     top: 0;
